@@ -37,9 +37,22 @@ public class WelcomeActivity extends AppCompatActivity {
         });
         // ------------------------------------------------
 
+        // ---------- NEW: Know your Knowledge gap ----------
+        Button knowledgeGapBtn = findViewById(R.id.btn_knowledge_gap);
+        knowledgeGapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WelcomeActivity.this, UserDataActivity.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        });
+        // --------------------------------------------------
+
         playEntranceAnimation();
         startAmbientMotion();
         addPressFeedback(getRecommendationsBtn);
+        addPressFeedback(knowledgeGapBtn); // UI
     }
 
     /** Staggered fade + slide-up for each element. */
@@ -49,6 +62,8 @@ public class WelcomeActivity extends AppCompatActivity {
                 findViewById(R.id.tv_title),
                 findViewById(R.id.tv_subtitle),
                 findViewById(R.id.fl_button_wrap),
+                findViewById(R.id.tv_or),
+                findViewById(R.id.fl_gap_wrap),
                 findViewById(R.id.ll_chips)
         };
         for (int i = 0; i < items.length; i++) {
@@ -58,14 +73,14 @@ public class WelcomeActivity extends AppCompatActivity {
             v.animate()
                     .alpha(1f)
                     .translationY(0f)
-                    .setStartDelay(200L + i * 140L)
+                    .setStartDelay(200L + i * 120L)
                     .setDuration(650L)
                     .setInterpolator(new DecelerateInterpolator(2f))
                     .start();
         }
     }
 
-    /** Looping motion: floating emoji, pulse ring, drifting blobs, breathing button. */
+    /** Looping motion: floating emoji, pulse ring, drifting blobs, breathing primary button. */
     private void startAmbientMotion() {
         // Emoji gently floats
         loop(ObjectAnimator.ofFloat(findViewById(R.id.tv_icon_emoji), "translationY", 0f, -14f), 2200L);
@@ -91,7 +106,7 @@ public class WelcomeActivity extends AppCompatActivity {
         loop(ObjectAnimator.ofFloat(blobBottom, "translationY", 0f, -50f), 7000L);
         loop(ObjectAnimator.ofFloat(blobBottom, "translationX", 0f, 40f), 8500L);
 
-        // Button wrapper breathes (wrapper, so touch feedback on the button still stacks)
+        // Only the PRIMARY button wrapper breathes; the secondary stays still
         View wrap = findViewById(R.id.fl_button_wrap);
         loop(ObjectAnimator.ofFloat(wrap, "scaleX", 1f, 1.04f), 1400L);
         loop(ObjectAnimator.ofFloat(wrap, "scaleY", 1f, 1.04f), 1400L);

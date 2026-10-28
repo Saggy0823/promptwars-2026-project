@@ -23,6 +23,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,6 +100,7 @@ public class RecommendationsActivity extends AppCompatActivity {
 
                 Long generatedAt = snapshot.child("generatedAt").getValue(Long.class);
                 String output = snapshot.child("output").getValue(String.class);
+                String detailsJson = snapshot.child("details").getValue(String.class); // NEW
 
                 if (generatedAt == null || output == null || output.trim().isEmpty()) {
                     return;
@@ -118,6 +122,7 @@ public class RecommendationsActivity extends AppCompatActivity {
                     }
                 }
 
+                adapter.setDetails(parseDetails(detailsJson)); // NEW
                 adapter.notifyDataSetChanged();
 
                 progressBar.setVisibility(View.GONE);
@@ -142,6 +147,49 @@ public class RecommendationsActivity extends AppCompatActivity {
         };
 
         dbRef.addValueEventListener(recommendationListener);
+    }
+
+    /**
+     * Turns the server's "details" JSON string into one Detail per recommendation.
+     * Safe: if the field is missing or malformed, cards simply show without details.
+     */
+    private List<RecommendationAdapter.Detail> parseDetails(String json) {
+        List<RecommendationAdapter.Detail> list = new ArrayList<>();
+        if (json == null || json.trim().isEmpty()) return list;
+
+        try {
+            JSONArray arr = new JSONArray(json);
+            for (int i = 0; i < arr.length(); i++) {
+                JSONObject o = arr.getJSONObject(i);
+                RecommendationAdapter.Detail d = new RecommendationAdapter.Detail();
+                d.why = o.optString("why", "");
+
+                JSONArray steps = o.optJSONArray("steps");
+                StringBuilder sb = new StringBuilder();
+                if (steps != null) {
+                    for (int j = 0; j < steps.length(); j++) {
+                        if (j > 0) sb.append("\n");
+                        sb.append("•  ").append(steps.optString(j));
+                    }
+                }
+                d.steps = sb.toString();
+
+                JSONArray careers = o.optJSONArray("careers");
+                StringBuilder cb = new StringBuilder();
+                if (careers != null) {
+                    for (int j = 0; j < careers.length(); j++) {
+                        if (j > 0) cb.append(", ");
+                        cb.append(careers.optString(j));
+                    }
+                }
+                d.careers = cb.toString();
+
+                list.add(d);
+            }
+        } catch (Exception ignored) {
+            list.clear();
+        }
+        return list;
     }
 
     @Override

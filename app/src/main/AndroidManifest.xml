@@ -59,6 +59,20 @@
             android:name=".RecommendationsActivity"
             android:exported="true"/>
 
+        <activity
+            android:name=".UserDataActivity"
+            android:exported="true"/>
+
+        <activity
+            android:name=".QuizActivity"
+            android:exported="true"/>
+
+        <activity
+            android:name=".GapReportActivity"
+            android:exported="true"/>
+
+
+
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_welcome_gradient">
@@ -23,133 +24,182 @@
         android:layout_marginBottom="-120dp"
         android:background="@drawable/bg_blob" />
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="24dp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!-- Icon with pulse ring -->
-        <FrameLayout
-            android:id="@+id/fl_icon"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginBottom="28dp">
-
-            <View
-                android:id="@+id/view_pulse_ring"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_pulse_ring" />
-
-            <FrameLayout
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:layout_gravity="center"
-                android:background="@drawable/bg_icon_circle">
-
-                <TextView
-                    android:id="@+id/tv_icon_emoji"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="🧭"
-                    android:textSize="44sp" />
-            </FrameLayout>
-        </FrameLayout>
-
-        <TextView
-            android:id="@+id/tv_title"
-            android:text="Welcome to CareerMitra"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:gravity="center"
-            android:letterSpacing="0.01"
-            android:layout_marginBottom="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_subtitle"
-            android:text="Your friendly guide to finding the right career path"
-            android:textSize="15sp"
-            android:textColor="#CCFFFFFF"
-            android:gravity="center"
-            android:lineSpacingExtra="4dp"
-            android:layout_marginBottom="40dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <FrameLayout
-            android:id="@+id/fl_button_wrap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp">
-
-            <Button
-                android:id="@+id/btn_get_recommendations"
-                android:text="Get your career path recommendations"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:textAllCaps="false"
-                android:background="@drawable/bg_button_primary"
-                android:stateListAnimator="@null"
-                android:elevation="8dp"
-                android:paddingStart="28dp"
-                android:paddingEnd="28dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </FrameLayout>
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
         <LinearLayout
-            android:id="@+id/ll_chips"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:padding="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Icon with pulse ring -->
+            <FrameLayout
+                android:id="@+id/fl_icon"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginBottom="24dp">
+
+                <View
+                    android:id="@+id/view_pulse_ring"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_pulse_ring" />
+
+                <FrameLayout
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_icon_circle">
+
+                    <TextView
+                        android:id="@+id/tv_icon_emoji"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="🧭"
+                        android:textSize="44sp" />
+                </FrameLayout>
+            </FrameLayout>
 
             <TextView
-                android:text="✨ Smart"
+                android:id="@+id/tv_title"
+                android:text="Welcome to CareerMitra"
+                android:textSize="30sp"
+                android:textStyle="bold"
                 android:textColor="#FFFFFF"
-                android:textSize="12sp"
-                android:background="@drawable/bg_chip"
-                android:paddingStart="14dp"
-                android:paddingEnd="14dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:layout_marginEnd="8dp"
+                android:gravity="center"
+                android:letterSpacing="0.01"
+                android:layout_marginBottom="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:text="🎯 Personal"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp"
-                android:background="@drawable/bg_chip"
-                android:paddingStart="14dp"
-                android:paddingEnd="14dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:layout_marginEnd="8dp"
+                android:id="@+id/tv_subtitle"
+                android:text="Find your career path or discover where your knowledge needs work"
+                android:textSize="15sp"
+                android:textColor="#CCFFFFFF"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="32dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
+            <!-- PRIMARY BUTTON (breathes) -->
+            <FrameLayout
+                android:id="@+id/fl_button_wrap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
+
+                <Button
+                    android:id="@+id/btn_get_recommendations"
+                    android:text="Get your career path recommendations"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/bg_button_primary"
+                    app:backgroundTint="@null"
+                    android:stateListAnimator="@null"
+                    android:elevation="8dp"
+                    android:paddingStart="28dp"
+                    android:paddingEnd="28dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </FrameLayout>
+
+            <!-- "or" caption -->
             <TextView
-                android:text="🚀 Quick"
-                android:textColor="#FFFFFF"
+                android:id="@+id/tv_or"
+                android:text="or"
                 android:textSize="12sp"
-                android:background="@drawable/bg_chip"
-                android:paddingStart="14dp"
-                android:paddingEnd="14dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
+                android:textColor="#99FFFFFF"
+                android:gravity="center"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="14dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
+            <!-- SECONDARY BUTTON (glass style, does not breathe) -->
+            <FrameLayout
+                android:id="@+id/fl_gap_wrap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="28dp">
+
+                <Button
+                    android:id="@+id/btn_knowledge_gap"
+                    android:text="Know your Knowledge gap  🧠"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/bg_button_secondary"
+                    app:backgroundTint="@null"
+                    android:stateListAnimator="@null"
+                    android:paddingStart="28dp"
+                    android:paddingEnd="28dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_chips"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="✨ Smart"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:background="@drawable/bg_chip"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:text="🎯 Personal"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:background="@drawable/bg_chip"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:text="🚀 Quick"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:background="@drawable/bg_chip"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 </FrameLayout>

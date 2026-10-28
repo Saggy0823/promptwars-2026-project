@@ -7,48 +7,135 @@
         android:id="@+id/cardRecommendationItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
+        android:orientation="vertical"
         android:layout_marginBottom="12dp"
         android:elevation="3dp"
         android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true"
         android:background="@drawable/bg_interest_item">
 
-        <TextView
-            android:id="@+id/tvRank"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:gravity="center"
-            android:text="1"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            android:background="@drawable/bg_rank_badge"/>
-
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="14dp">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <TextView
-                android:id="@+id/textViewCareerPath"
+                android:id="@+id/tvRank"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:background="@drawable/bg_rank_badge"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="14dp">
+
+                <TextView
+                    android:id="@+id/textViewCareerPath"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="#1C1C1E"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/textViewReason"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textSize="14sp"
+                    android:textColor="#6E6E73"
+                    android:lineSpacingExtra="3dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvArrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
-                android:textColor="#1C1C1E"
-                android:textStyle="bold"/>
+                android:layout_marginStart="8dp"
+                android:text="▾"
+                android:textSize="20sp"
+                android:textColor="#4F46E5"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <!-- DETAILS (shown when the card is tapped) -->
+        <LinearLayout
+            android:id="@+id/layoutDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="14dp"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="12dp"
+                android:background="#E5E5EA" />
 
             <TextView
-                android:id="@+id/textViewReason"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💡  Why this fits you"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#4F46E5"/>
+
+            <TextView
+                android:id="@+id/tvWhy"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:textSize="14sp"
-                android:textColor="#6E6E73"
-                android:lineSpacingExtra="3dp"
-                android:visibility="gone"/>
+                android:textColor="#1C1C1E"
+                android:lineSpacingExtra="3dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="🗓  What to do next term"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#4F46E5"/>
+
+            <TextView
+                android:id="@+id/tvSteps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:textColor="#1C1C1E"
+                android:lineSpacingExtra="3dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="💼  Careers it leads to"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#4F46E5"/>
+
+            <TextView
+                android:id="@+id/tvCareers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:textColor="#1C1C1E"
+                android:lineSpacingExtra="3dp"/>
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

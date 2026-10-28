@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F7">
+
+    <!-- ============ LOADING ============ -->
+    <LinearLayout
+        android:id="@+id/layoutLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp"
+        android:background="@drawable/bg_welcome_gradient">
+
+        <ProgressBar
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:indeterminateTint="#FFFFFF"/>
+
+        <TextView
+            android:id="@+id/tvLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="🧠  Building your quiz…"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="This can take 1 to 3 minutes.\nPlease keep the app open."
+            android:textSize="14sp"
+            android:textColor="#CCFFFFFF"
+            android:lineSpacingExtra="4dp"/>
+    </LinearLayout>
+
+    <!-- ============ ERROR ============ -->
+    <LinearLayout
+        android:id="@+id/layoutError"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp"
+        android:background="#F5F5F7"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⚠️"
+            android:textSize="52sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Something went wrong"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#1C1C1E"/>
+
+        <TextView
+            android:id="@+id/tvErrorMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#6E6E73"
+            android:lineSpacingExtra="3dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonErrorRetry"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="28dp"
+            android:text="Try again"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            app:cornerRadius="16dp"
+            android:backgroundTint="#4F46E5"/>
+    </LinearLayout>
+
+    <!-- ============ QUIZ ============ -->
+    <LinearLayout
+        android:id="@+id/layoutQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <!-- HEADER -->
+        <FrameLayout
+            android:id="@+id/headerQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_header_gradient">
+
+            <View
+                android:id="@+id/blobQuiz"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="-70dp"
+                android:layout_marginEnd="-60dp"
+                android:background="@drawable/bg_blob" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:paddingTop="44dp"
+                android:paddingBottom="22dp">
+
+                <TextView
+                    android:id="@+id/tvQuizDomain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"/>
+
+                <TextView
+                    android:id="@+id/tvQuestionCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textSize="14sp"
+                    android:textColor="#CCFFFFFF"/>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/bg_progress_track">
+
+                    <View
+                        android:id="@+id/viewProgressFill"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_progress_fill"/>
+                </FrameLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- QUESTION AREA -->
+        <ScrollView
+            android:id="@+id/scrollQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:padding="20dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/cardQuestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_elevated"
+                android:elevation="6dp"
+                android:padding="18dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvTopic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_value_pill"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="#4F46E5"/>
+
+                    <TextView
+                        android:id="@+id/tvDifficulty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_tag"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:textSize="12sp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvQuestionText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#1C1C1E"
+                    android:lineSpacingExtra="3dp"/>
+
+                <LinearLayout
+                    android:id="@+id/optionsContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:orientation="vertical"/>
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- BOTTOM BAR -->
+        <LinearLayout
+            android:id="@+id/barBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#FFFFFF"
+            android:elevation="10dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="16dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonPrev"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="54dp"
+                android:layout_marginEnd="6dp"
+                android:text="← Back"
+                android:textAllCaps="false"
+                android:textSize="15sp"
+                android:textColor="#3A3A3C"
+                app:cornerRadius="14dp"
+                android:backgroundTint="#ECECF2"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonSkip"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="54dp"
+                android:layout_marginEnd="6dp"
+                android:text="Skip"
+                android:textAllCaps="false"
+                android:textSize="15sp"
+                android:textColor="#6E6E73"
+                app:cornerRadius="14dp"
+                android:backgroundTint="@android:color/transparent"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonNext"
+                android:layout_width="0dp"
+                android:layout_weight="1.6"
+                android:layout_height="54dp"
+                android:text="Next →"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="14dp"
+                android:backgroundTint="#4F46E5"/>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F7">
+
+    <!-- ============ LOADING ============ -->
+    <LinearLayout
+        android:id="@+id/layoutLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp"
+        android:background="@drawable/bg_welcome_gradient">
+
+        <ProgressBar
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:indeterminateTint="#FFFFFF"/>
+
+        <TextView
+            android:id="@+id/tvLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="📊  Analysing your answers…"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"/>
+
+        <TextView
+            android:id="@+id/tvLoadingSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Your report is being written.\nThis can take 1 to 3 minutes."
+            android:textSize="14sp"
+            android:textColor="#CCFFFFFF"
+            android:lineSpacingExtra="4dp"/>
+    </LinearLayout>
+
+    <!-- ============ REPORT ============ -->
+    <ScrollView
+        android:id="@+id/scrollReport"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- HEADER -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_header_gradient">
+
+                <View
+                    android:id="@+id/blobReport"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="-70dp"
+                    android:layout_marginEnd="-70dp"
+                    android:background="@drawable/bg_blob" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp"
+                    android:paddingTop="48dp"
+                    android:paddingBottom="56dp">
+
+                    <TextView
+                        android:id="@+id/tvBrand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CareerMitra"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"
+                        android:letterSpacing="0.12"
+                        android:background="@drawable/bg_chip"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:layout_marginBottom="14dp"/>
+
+                    <TextView
+                        android:id="@+id/tvReportTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Your Knowledge Gap Report"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"/>
+
+                    <TextView
+                        android:id="@+id/tvReportSubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="15sp"
+                        android:textColor="#CCFFFFFF"/>
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- HERO CARD -->
+            <LinearLayout
+                android:id="@+id/cardHero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:background="@drawable/bg_card_elevated"
+                android:elevation="8dp"
+                android:padding="18dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="-32dp">
+
+                <com.aipath.careermitra.GaugeView
+                    android:id="@+id/gaugeView"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"/>
+
+                <TextView
+                    android:id="@+id/tvLevelChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_value_pill"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="#4F46E5"/>
+
+                <TextView
+                    android:id="@+id/tvSummary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:textSize="14sp"
+                    android:textColor="#3A3A3C"
+                    android:lineSpacingExtra="4dp"/>
+            </LinearLayout>
+
+            <!-- SECTIONS ARE ADDED HERE IN CODE -->
+            <LinearLayout
+                android:id="@+id/sectionsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+            <!-- ACTIONS -->
+            <LinearLayout
+                android:id="@+id/layoutActions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="32dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonAnother"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="Take another quiz  🔁"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    app:cornerRadius="16dp"
+                    android:backgroundTint="#4F46E5"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonShare"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Share report  📤"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    android:textColor="#4F46E5"
+                    app:cornerRadius="16dp"
+                    android:backgroundTint="#EEF0FF"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Back to Home"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    android:textColor="#6E6E73"
+                    app:cornerRadius="16dp"
+                    android:backgroundTint="#ECECF2"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>
