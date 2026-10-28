@@ -3,6 +3,7 @@ package com.aipath.careermitra;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 public class InterestsAdapter extends RecyclerView.Adapter<InterestsAdapter.ViewHolder> {
 
     private ArrayList<String> interestsList;
+    private int lastAnimatedPosition = -1; // UI
 
     public InterestsAdapter(ArrayList<String> interestsList) {
         this.interestsList = interestsList;
@@ -29,6 +31,32 @@ public class InterestsAdapter extends RecyclerView.Adapter<InterestsAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.textView.setText(interestsList.get(position));
+
+        // UI: reset the inner view first so it can never stay shifted
+        holder.textView.animate().cancel();
+        holder.textView.setAlpha(1f);
+        holder.textView.setTranslationX(0f);
+        holder.textView.setTranslationY(0f);
+
+        if (position > lastAnimatedPosition) {
+            holder.textView.setAlpha(0f);
+            holder.textView.setTranslationY(50f); // vertical, so it can't look "right-sided"
+            holder.textView.animate()
+                    .alpha(1f).translationY(0f)
+                    .setDuration(450L)
+                    .setInterpolator(new DecelerateInterpolator(2f))
+                    .start();
+            lastAnimatedPosition = position;
+        }
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(@NonNull ViewHolder holder) {
+        holder.textView.animate().cancel();
+        holder.textView.setAlpha(1f);
+        holder.textView.setTranslationX(0f);
+        holder.textView.setTranslationY(0f);
+        super.onViewDetachedFromWindow(holder);
     }
 
     @Override

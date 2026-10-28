@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:background="@drawable/bg_apple_card"
-    android:padding="16dp"
-    android:layout_marginBottom="12dp"
-    android:elevation="4dp"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textViewExperience"
-        android:textSize="15sp"
-        android:textColor="#000000"
-        android:lineSpacingExtra="4dp"
+    <LinearLayout
+        android:id="@+id/cardExperienceItem"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp"
+        android:elevation="3dp"
+        android:background="@drawable/bg_interest_item">
+
+        <View
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_accent_bar" />
+
+        <TextView
+            android:id="@+id/textViewExperience"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textSize="15sp"
+            android:textColor="#1C1C1E"
+            android:lineSpacingExtra="4dp"/>
+    </LinearLayout>
+</FrameLayout>

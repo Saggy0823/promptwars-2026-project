@@ -1,8 +1,13 @@
 package com.aipath.careermitra;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -33,6 +38,9 @@ public class RecommendationsActivity extends AppCompatActivity {
     private ValueEventListener recommendationListener;
 
     private long screenOpenedAt;
+
+    // UI: infinite animators, cancelled in onDestroy
+    private final List<Animator> loopingAnimators = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +75,13 @@ public class RecommendationsActivity extends AppCompatActivity {
             Intent intentRetry = new Intent(RecommendationsActivity.this, EducationActivity.class);
             intentRetry.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intentRetry);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out); // UI
             finish();
         });
+
+        // UI: animations (run after the original setup)
+        playEntranceAnimation();
+        addPressFeedback(buttonRetry);
     }
 
     private void startListening() {
@@ -110,6 +123,7 @@ public class RecommendationsActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
                 buttonRetry.setVisibility(View.VISIBLE);
+                showResultsUi(); // UI
 
                 // Stop listening after success
                 dbRef.removeEventListener(this);
@@ -118,6 +132,7 @@ public class RecommendationsActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 progressBar.setVisibility(View.GONE);
+                findViewById(R.id.tvLoading).setVisibility(View.GONE); // UI
                 Toast.makeText(
                         RecommendationsActivity.this,
                         "Database Error: " + error.getMessage(),
@@ -135,5 +150,77 @@ public class RecommendationsActivity extends AppCompatActivity {
         if (dbRef != null && recommendationListener != null) {
             dbRef.removeEventListener(recommendationListener);
         }
+        for (Animator a : loopingAnimators) { // UI
+            a.cancel();
+        }
+        loopingAnimators.clear();
+    }
+
+    // ---------------- UI helpers (no effect on app logic) ----------------
+
+    /** Hides the loading text and slides the Retry button in once results arrive. */
+    private void showResultsUi() {
+        View loading = findViewById(R.id.tvLoading);
+        loading.animate().cancel();
+        loading.setVisibility(View.GONE);
+
+        buttonRetry.setAlpha(0f);
+        buttonRetry.setTranslationY(80f);
+        buttonRetry.animate().alpha(1f).translationY(0f)
+                .setStartDelay(500L)
+                .setDuration(600L)
+                .setInterpolator(new DecelerateInterpolator(2.2f))
+                .start();
+    }
+
+    private void playEntranceAnimation() {
+        View[] header = new View[]{
+                findViewById(R.id.tvBrand),
+                findViewById(R.id.textHeader),
+                findViewById(R.id.tvSubtitle)
+        };
+        for (int i = 0; i < header.length; i++) {
+            View v = header[i];
+            v.setAlpha(0f);
+            v.setTranslationY(-30f);
+            v.animate().alpha(1f).translationY(0f)
+                    .setStartDelay(100L + i * 110L)
+                    .setDuration(550L)
+                    .setInterpolator(new DecelerateInterpolator(2f))
+                    .start();
+        }
+
+        // Pulsing "Analysing…" text while waiting
+        ObjectAnimator pulse = ObjectAnimator.ofFloat(findViewById(R.id.tvLoading), "alpha", 1f, 0.35f);
+        pulse.setDuration(1100L);
+        pulse.setRepeatCount(ObjectAnimator.INFINITE);
+        pulse.setRepeatMode(ObjectAnimator.REVERSE);
+        pulse.start();
+        loopingAnimators.add(pulse);
+
+        // Slowly drifting header blob
+        ObjectAnimator drift = ObjectAnimator.ofFloat(findViewById(R.id.blobRecommendations), "translationY", 0f, 35f);
+        drift.setDuration(6000L);
+        drift.setRepeatCount(ObjectAnimator.INFINITE);
+        drift.setRepeatMode(ObjectAnimator.REVERSE);
+        drift.setInterpolator(new AccelerateDecelerateInterpolator());
+        drift.start();
+        loopingAnimators.add(drift);
+    }
+
+    /** Press-in/release scale. Returns false so the normal click still fires. */
+    private void addPressFeedback(View button) {
+        button.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    v.animate().scaleX(0.96f).scaleY(0.96f).setDuration(110L).start();
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    v.animate().scaleX(1f).scaleY(1f).setDuration(160L).start();
+                    break;
+            }
+            return false;
+        });
     }
 }
