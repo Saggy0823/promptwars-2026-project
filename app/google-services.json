@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "510456138479",
+    "firebase_url": "https://careerpathai-c1867-default-rtdb.firebaseio.com",
+    "project_id": "careerpathai-c1867",
+    "storage_bucket": "careerpathai-c1867.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510456138479:android:470fad1c6529743ab1e91a",
+        "android_client_info": {
+          "package_name": "com.aipath.aicareer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC10DbdqphGZI1tIsrTW5Uao8wb0fUgbUk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510456138479:android:03edd6c6c5b220d3b1e91a",
+        "android_client_info": {
+          "package_name": "com.aipath.careermitra"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC10DbdqphGZI1tIsrTW5Uao8wb0fUgbUk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510456138479:android:15477f1b8d7a5c69b1e91a",
+        "android_client_info": {
+          "package_name": "com.aipath.careerpath"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC10DbdqphGZI1tIsrTW5Uao8wb0fUgbUk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

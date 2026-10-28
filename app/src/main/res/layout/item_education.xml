@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="8dp"
+    android:background="@drawable/bg_input_field"
+    android:padding="14dp">
+
+    <CheckBox
+        android:id="@+id/checkBoxEducation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:buttonTint="#4F46E5"
+        android:textColor="#1C1C1E"/>
+</LinearLayout>

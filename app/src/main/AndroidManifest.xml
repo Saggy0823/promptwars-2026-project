@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.aipath.careermitra">
+
+    <!-- Required permissions -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CareerMitra">
+
+        <!-- Splash Screen (Launcher) -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Welcome Screen -->
+        <activity
+            android:name=".WelcomeActivity"
+            android:exported="true"/>
+
+        <!-- Education Page -->
+        <activity
+            android:name=".EducationActivity"
+            android:exported="true"/>
+
+        <!-- Skills Page -->
+        <activity
+            android:name=".SkillsActivity"
+            android:exported="true"/>
+
+        <!-- Interests Page -->
+        <activity
+            android:name=".InterestsActivity"
+            android:exported="true"/>
+
+        <!-- Experience Page -->
+        <activity
+            android:name=".ExperienceActivity"
+            android:exported="true"/>
+
+        <!-- Emotional/Mind Questions Page -->
+        <activity
+            android:name=".QuestionsActivity"
+            android:exported="true"/>
+
+        <!-- Recommendations Display Page -->
+        <activity
+            android:name=".RecommendationsActivity"
+            android:exported="true"/>
+
+    </application>
+
+</manifest>

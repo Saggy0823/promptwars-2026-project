@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_questions"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F7"
+    android:padding="20dp"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- APP NAME -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="CareerMitra"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:letterSpacing="0.03"
+            android:layout_marginBottom="6dp"/>
+
+        <!-- PAGE TITLE -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Emotional Assessment"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="6dp"/>
+
+        <!-- SUBTITLE -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Answer honestly to get better career guidance"
+            android:textSize="14sp"
+            android:textColor="#6E6E73"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- CARD -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_apple_card"
+            android:padding="20dp"
+            android:elevation="6dp"
+            android:layout_marginBottom="24dp">
+
+            <!-- QUESTION 1 -->
+            <TextView
+                android:text="1. How motivated do you feel today?"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#1C1C1E"/>
+
+            <SeekBar
+                android:id="@+id/seekBar1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="10"/>
+
+            <!-- QUESTION 2 -->
+            <TextView
+                android:text="2. How confident are you in your skills?"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#1C1C1E"
+                android:layout_marginTop="16dp"/>
+
+            <SeekBar
+                android:id="@+id/seekBar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="10"/>
+
+            <!-- QUESTION 3 -->
+            <TextView
+                android:text="3. How well do you handle stress?"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#1C1C1E"
+                android:layout_marginTop="16dp"/>
+
+            <SeekBar
+                android:id="@+id/seekBar3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="10"/>
+
+            <!-- QUESTION 4 -->
+            <TextView
+                android:text="4. How focused are you on your career goals?"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#1C1C1E"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"/>
+
+            <SeekBar
+                android:id="@+id/seekBar4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="10"/>
+
+            <!-- QUESTION 5 -->
+            <TextView
+                android:text="5. How satisfied are you with your progress?"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#1C1C1E"
+                android:layout_marginTop="16dp"/>
+
+            <SeekBar
+                android:id="@+id/seekBar5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="10"/>
+
+        </LinearLayout>
+
+        <!-- BUTTON -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonGetRecommendations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Career Recommendations"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            app:cornerRadius="14dp"
+            android:paddingVertical="14dp"
+            android:backgroundTint="#007AFF"/>
+
+    </LinearLayout>
+</ScrollView>
